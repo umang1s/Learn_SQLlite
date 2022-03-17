@@ -5,7 +5,8 @@
       <map>
         <entry key="..\:/Project/SQLite/app/src/main/res/layout/activity_add_data.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/SQLite/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Project/SQLite/app/src/main/res/layout/card_view.xml" value="0.22826086956521738" />
+        <entry key="..\:/Project/SQLite/app/src/main/res/layout/card_view.xml" value="0.1" />
+        <entry key="..\:/Project/SQLite/app/src/main/res/layout/for_fragment.xml" value="0.1" />
         <entry key="..\:/Project/SQLite/app/src/main/res/layout/fragment_add_data.xml" value="0.22826086956521738" />
       </map>
     </option>

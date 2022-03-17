@@ -1,6 +1,7 @@
 package com.umang.sqlite;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,10 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 public class CardAdapter extends ArrayAdapter<Person> {
-
+    Context context;
     public CardAdapter(@NonNull Context context, int resource, @NonNull List<Person> objects) {
         super(context, resource, objects);
+        this.context=context;
     }
 
     @NonNull
@@ -30,13 +32,13 @@ public class CardAdapter extends ArrayAdapter<Person> {
         nameView.setText(person.name);
 
         TextView officeView=cur.findViewById(R.id.person_office);
-        nameView.setText(person.office);
+        officeView.setText(person.office);
 
         TextView salaryView=cur.findViewById(R.id.person_salary);
-        nameView.setText(person.salary);
+        salaryView.setText(Integer.toString(person.salary));
 
         TextView modeView=cur.findViewById(R.id.person_mode);
-        nameView.setText(person.mode);
+        modeView.setText(person.mode);
 
         Button updateButton=cur.findViewById(R.id.edit_button);
         updateButton.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +52,8 @@ public class CardAdapter extends ArrayAdapter<Person> {
 
             @Override
             public void onClick(View view) {
-
+                SQL sql=new SQL(context);
+                sql.deletePerson(person);
             }
         });
         return cur;

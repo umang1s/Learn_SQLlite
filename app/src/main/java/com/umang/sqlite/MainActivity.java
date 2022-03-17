@@ -1,7 +1,11 @@
 package com.umang.sqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,9 +13,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,6 +32,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private  ListView listView;
     private  CardAdapter cardAdapter;
 
+
+    private Button backButton,insertButton;
+    private  EditText name,office,salary;
+    private Switch mode;
+    private CheckBox checkBox;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +47,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         sql=new SQL(this);
         listView=findViewById(R.id.listview);
         addButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
-                toast("AddButton Clicked");
+//                Fragment fragment=new AddData(false,new Person());
+//                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.main_page,fragment,null).commit();
+                Person person=new Person("First",32000,"INDIA",false,0);
+                if(sql.addPerson(person)) { toast("SUCCESS"); updateList("");}
+                else toast("FAILED");
+
             }
         });
         updateList("");
@@ -77,6 +96,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Person person=adapter.getItem(i);
         toast(person.toString());
+
+    }
+
+    private void backButtonPressed(){
 
     }
 }
